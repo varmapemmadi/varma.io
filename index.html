@@ -1,639 +1,804 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Alex Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mukhesh Varma | Java Full Stack Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy2: #0f1f3d;
+      --accent: #00d4ff;
+      --accent2: #0088cc;
+      --gold: #f4a823;
+      --white: #f0f4f8;
+      --muted: #7a91ad;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(0,212,255,0.15);
+    }
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link rel="stylesheet" href="css/aos.css">
+    html { scroll-behavior: smooth; }
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
 
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
+      color: var(--muted); text-decoration: none;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
 
-<style>
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 5% 4rem;
+      position: relative; overflow: hidden;
+    }
 
-/*======================================
-//--//-->   ABOUT
-======================================*/
+    /* Animated grid background */
+    #home::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
 
-.about-mf .box-shadow-full {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
+    /* Glow orb */
+    #home::after {
+      content: '';
+      position: absolute; top: 20%; left: 55%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
 
-.about-mf .about-img {
-  margin-bottom: 2rem;
-}
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
 
-.about-mf .about-img img {
-  margin-left: 10px;
-}
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 1px;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--accent); border-radius: 50%;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -2px;
+      color: var(--white);
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .hero-name .accent { color: var(--accent); }
 
-.skill-mf .progress {
-  /* background-color: #cde1f8; */
-  margin: .5rem 0 1.2rem 0;
-  border-radius: 0;
-  height: .7rem;
-}
+    .hero-role {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 600; color: var(--gold);
+      margin: 0.8rem 0 1.5rem;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
 
-.skill-mf .progress .progress-bar {
-  height: .7rem;
-  background-color: #ffbd39;
-}
+    .hero-desc {
+      font-size: 1rem; line-height: 1.8; color: var(--muted);
+      max-width: 560px;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
 
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin: 2.5rem 0;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+    .stat-item { text-align: left; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem; font-weight: 800; color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Animation styles */
-#typing-animation {
-  position: relative;
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
-}
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.5s both;
+    }
+    .btn-primary {
+      padding: 0.8rem 2rem; border-radius: 6px;
+      background: var(--accent); color: var(--navy);
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.2s;
+      font-family: 'Syne', sans-serif; letter-spacing: 0.3px;
+    }
+    .btn-primary:hover { background: #33dcff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,0.3); }
+    .btn-outline {
+      padding: 0.8rem 2rem; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--white);
+      font-weight: 500; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-#typing-animation:before {
-  content: "";
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
-}
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5%; }
 
-@keyframes typing-cursor {
-  from {
-    width: 5px;
-  }
-  to {
-    width: 0;
-  }
-}
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -1px; color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 560px; line-height: 1.7; }
 
+    /* ── ABOUT ── */
+    #about { background: var(--navy2); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem;
+      align-items: start; margin-top: 3.5rem;
+    }
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+    }
+    .about-info-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem;
+    }
+    .about-info-row:last-child { border-bottom: none; }
+    .info-label { color: var(--muted); font-weight: 400; }
+    .info-val { color: var(--white); font-weight: 500; text-align: right; }
 
-/* project image zoom effect */
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.97rem; }
+    .about-text p strong { color: var(--white); }
 
-.zoom-effect {
-  overflow: hidden;
-  transition: transform 0.3s ease-out;
-}
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .skill-card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .skill-card-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.95rem; color: var(--accent); margin-bottom: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag {
+      background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 100px; padding: 0.2rem 0.7rem;
+      font-size: 0.78rem; color: var(--white);
+    }
 
-.zoom-effect:hover {
-  transform: scale(1.1);
-}
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--navy2); }
+    .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 3rem; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -2.45rem; top: 0.5rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--navy);
+      box-shadow: 0 0 12px rgba(0,212,255,0.6);
+    }
+    .timeline-header { margin-bottom: 0.8rem; }
+    .timeline-role {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.15rem; color: var(--white);
+    }
+    .timeline-company { color: var(--accent); font-weight: 500; font-size: 0.95rem; }
+    .timeline-period {
+      display: inline-block; margin-top: 0.3rem;
+      background: rgba(244,168,35,0.12); border: 1px solid rgba(244,168,35,0.3);
+      border-radius: 100px; padding: 0.15rem 0.8rem;
+      font-size: 0.78rem; color: var(--gold); font-weight: 500;
+    }
+    .timeline-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; margin-top: 1rem;
+    }
+    .timeline-card ul { list-style: none; }
+    .timeline-card ul li {
+      padding: 0.45rem 0; padding-left: 1.2rem; position: relative;
+      color: var(--muted); font-size: 0.92rem; line-height: 1.6;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .timeline-card ul li:last-child { border-bottom: none; }
+    .timeline-card ul li::before {
+      content: '→'; position: absolute; left: 0; color: var(--accent);
+      font-size: 0.8rem; top: 0.5rem;
+    }
+    .project-label {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.9rem; color: var(--white);
+      margin: 1rem 0 0.5rem; padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .project-label:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .project-stack {
+      font-size: 0.78rem; color: var(--accent); font-style: italic; margin-bottom: 0.5rem;
+    }
+    .badge-nic {
+      display: inline-block;
+      background: rgba(0,212,255,0.15); border: 1px solid var(--accent);
+      border-radius: 4px; padding: 0.1rem 0.5rem;
+      font-size: 0.7rem; font-weight: 700; color: var(--accent);
+      margin-left: 0.5rem; vertical-align: middle;
+    }
+    .badge-gov {
+      display: inline-block;
+      background: rgba(244,168,35,0.15); border: 1px solid var(--gold);
+      border-radius: 4px; padding: 0.1rem 0.5rem;
+      font-size: 0.7rem; font-weight: 700; color: var(--gold);
+      margin-left: 0.5rem; vertical-align: middle;
+    }
 
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-6px); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card-num {
+      font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
+      color: rgba(0,212,255,0.08); position: absolute; top: 1rem; right: 1.5rem;
+      line-height: 1;
+    }
+    .project-card-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.05rem; color: var(--white); margin-bottom: 0.5rem; line-height: 1.3;
+    }
+    .project-card-stack {
+      font-size: 0.78rem; color: var(--accent); margin-bottom: 1rem; font-style: italic;
+    }
+    .project-card-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
-</style>
+    /* ── EDUCATION ── */
+    #education { background: var(--navy2); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .edu-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .edu-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .edu-year {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .edu-degree {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem; color: var(--white); margin-bottom: 0.3rem;
+    }
+    .edu-institute { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .edu-grade {
+      display: inline-block;
+      background: rgba(0,212,255,0.1); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.2rem 0.8rem;
+      font-size: 0.78rem; color: var(--accent); font-weight: 500;
+    }
 
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      margin-top: 3rem; align-items: start;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.2rem; border-radius: 12px;
+      background: var(--card); border: 1px solid var(--border);
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(0,212,255,0.1); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-val { font-weight: 500; color: var(--white); font-size: 0.95rem; }
+    .contact-val a { color: var(--accent); text-decoration: none; }
+    .contact-val a:hover { text-decoration: underline; }
 
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Alex</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
+    .contact-note {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem;
+    }
+    .contact-note h3 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.4rem; color: var(--white); margin-bottom: 1rem;
+    }
+    .contact-note p { color: var(--muted); line-height: 1.8; font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-			  <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-	  <section id="home-section" class="hero">
-		  <div class="home-slider  owl-carousel">
-	       <div class="slider-item ">
-	      	<div class="overlay"></div>
-	         <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/diu.1.jpeg);">
-	          	 <div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">Hello!</span>
-			            <h1 class="mb-4 mt-3">I'm <span>Alex</span></h1>
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(0,0,0,0.4); border-top: 1px solid var(--border);
+      padding: 2rem 5%; text-align: center;
+    }
+    footer p { color: var(--muted); font-size: 0.85rem; }
+    footer span { color: var(--accent); }
 
-						<!-- Element to contain animated typing -->
-						<span id="typing-animation"></span>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
 
-						<script>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">M<span>.</span>Varma</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-						// Initialize the typing animation
-						const typingAnimationElement = document.getElementById('typing-animation');
-
-						// Create an array of typing text
-						const typingTexts = [
-						'DevOps Engineer',
-						'Bloger',
-						'Trainer ',
-						];
-
-						// Create a function to display the typing animation for a given text
-						function playTypingAnimation(text) {
-						// Loop through each character and add it to the element
-						for (let i = 0; i < text.length; i++) {
-							setTimeout(() => {
-							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
-						}
-
-						// Once the animation is complete, reset the text and start over
-						setTimeout(() => {
-							typingAnimationElement.textContent = '';
-							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
-						}
-
-						// Start the typing animation loop
-						playTypingAnimation(typingTexts[0]);
-
-						</script>
-
-						<br>
-						<br>
-			            <h2>A Passionate DevOps Engineer</h2>
-						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
-						<!-- <br> -->
-			            <p><a href="#" class="btn btn-primary py-3 px-4">Blogs</a> 
-							<a href="https://github.com/devops0014" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-		</div>
-    </section>
-
-
-
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-    	<div class="container">
-			<div class="row">
-				<div class="row d-flex align-items-stretch">
-				<!-- <div class="row d-flex"> -->
-					<div class="col-md-6 col-lg-5 d-flex">
-						<div class="img-about img d-flex align-items-stretch">
-							<div class="overlay">
-								<div class="row">
-									<div class="col-sm-6 col-md-5">
-									  <div class="about-img">
-										<img src="images/diu.1.jpeg" class="img-fluid rounded b-shadow-a" alt="">
-									  </div>
-									</div>
-									<!-- Details next to profile image -->
-									<div class="col-sm-6 col-md-7">
-									  <div class="about-info">
-										<p><span class="title-s">Name: </span> <span>Alex</span></p>
-										<p><span class="title-s">Job Role: </span> <span>DevOps Engineer</span></p>
-										<p><span class="title-s">Experience: </span> <span>3 Years</span></p>
-										<p><span class="title-s">Address: </span> <span>Hyderabad, India</span></p>
-									  </div>
-									</div>
-								  </div>
-
-								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>Configuration Management</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Infrastructure as Code (IaC)</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span> Continuous Integration/Continuous Deployment (CI/CD) Tools</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Version Control Tools</span> <span class="pull-right">85%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Containerization Tools</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-						<div class="row justify-content-start pb-3">
-							<div class="col-md-12 heading-section ftco-animate">
-								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
-								
-								<p>Hi, I’m Alex, a passionate and results-driven DevOps Engineer with 3 years of hands-on experience in designing, implementing, and optimizing CI/CD pipelines, infrastructure automation, and cloud-native solutions. I thrive in collaborative environments where I can leverage my technical expertise to streamline development workflows, enhance system reliability, and deliver scalable, secure, and efficient solutions.
-
-									My journey in DevOps has equipped me with a strong foundation in tools and technologies like Git, Maven, Jenkins, Docker, Kubernetes (K8s), Terraform, and AWS Cloud. I specialize in automating infrastructure provisioning, managing containerized applications, and ensuring seamless deployments across diverse environments.
-
-									I’m deeply committed to continuous learning and staying updated with the latest trends in DevOps and cloud technologies. Whether it’s building robust CI/CD pipelines, managing cloud infrastructure, or troubleshooting complex systems, I’m always eager to tackle new challenges and deliver impactful results.</p>
-								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>DevOps Engineer</span></li>
-									<li class="d-flex"><span>Domain:</span> <span>Could computing &amp; AWS DevOps Engineer</span></li>
-									<li class="d-flex"><span>Education:</span> <span>BTech </span></li>
-									<li class="d-flex"><span>Language:</span> <span>English, Telugu & Hindi</span></li>
-									<!-- <li class="d-flex"><span>BI Tools:</span> <span>Microsoft PowerBI &amp; </span></li> -->
-									<!-- li class="d-flex"><span>Other Skills:</span> <span>Cloud, Excel, Git, JIRA, Blogging,</span></li> -->
-									<li class="d-flex"><span>Interest:</span> <span>Traveling, Photography, Teaching, Sports & Books</span></li>
-									
-								</ul>
-							</div>
-						</div>
-
-
-						<div class="counter-wrap ftco-animate d-flex mt-md-3">
-							<div class="text">
-								<p class="mb-4">
-									<span class="number" data-number="10">0</span> <span>+</span>
-									<span>&nbsp; Projects completed</span>
-								</p>
-								<p><a href=https://www.linkedin.com/in/musta-shaik/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </section>
-
-
-
-	
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p> Motivated and detail-oriented DevOps Engineer. Proficient in CI/CD pipelines, containerization, and cloud services.
-				Experienced with tools like Jenkins, Docker, Kubernetes, and AWS. Eager to leverage technical skills and collaborative
-				abilities to optimize deployment processes and enhance operational efficiency. Passionate about continuous learning and
-				implementing innovative solutions to improve system reliability and performance</p>
-          </div>
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-content">
+      <div class="hero-tag">Available for opportunities</div>
+      <h1 class="hero-name">Mukhesh<br><span class="accent">Madhava Varma</span></h1>
+      <div class="hero-role" id="typing-role">Java Full Stack Developer</div>
+      <p class="hero-desc">
+        Building production-grade government and enterprise applications with Spring Boot, React, and AWS. Currently developing <strong style="color:var(--white)">NIC-approved platforms</strong> for the Government of Bihar used by <strong style="color:var(--white)">54,000+ Fair Price Shops</strong> daily.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Experience</div>
         </div>
-
-		<div class="row">
-			<h1 class="big-4">Experience</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-		<div class="row">
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">March 2024</span>
-						<h2>Verizon Cloud Platform </h2>
-						<span class="position">Verizon</span>
-						<p class="mt-4">Verizon Cloud Platform Job Simulation on Forage - March 2024 
-							<ul>
-								<li>Completed a job simulation involving building a hypothetical new VPN product
-									for Verizon’s Cloud Computing team.</li>
-								<li> Used command line Python to test whether Verizon’s VPN met the cloud-native
-									traits, i.e. redundancy, resiliency and least-privilege.</li>
-								<li>Researched approaches to achieve application security and communicated
-									insights in a PowerPoint Presentation</li>
-							</ul>
-						</p>
-					</div>
-
-				</div>
-
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date"> March
-							2024. </span>
-						<h2>AWS APAC Solutions Architecture</h2>
-						<span class="position">AWS</span>
-						<p class="mt-4">AWS APAC Solutions Architecture virtual experience program on Forage - March
-							2024. 
-							<ul>
-								<li>Designed and simple and scalable hosting architecture based on Elastic
-									Beanstalk for a client experiencing significant growth and slow response
-									times.</li>
-								<li>Described my proposed architecture in plain language ensuring my client
-									understood how it works and how costs will be calculated for it.</li>
-								<!-- <li>Performed migration and enhancements for merchandising dashboard, involved data integration and its feature improvement.</li> -->
-							</ul>
-						</p>
-					</div>
-
-				</div>
-			</div>
-
-		<br>
-		<br>
-
-		<div class="row">
-			<h1 class="big-4">Education</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-			<div class="row">
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2016-2020</span>
-    					<h2>BTech</h2>
-    					<span class="position">KL University</span>
-    					<p class="mt-4">Grade: First class distinction.</p>
-    				</div>
-    			</div>
-
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2014-2016</span>
-    					<h2>Intermediate</h2>
-    					<span class="position">Narayana Junior College</span>
-    					<p class="mt-4">Grade: First class distinction.</p>
-    				</div>
-				</div>
-    		</div>
-
-    		<div class="row justify-content-center mt-5">
-    			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
-    			</div>
-    		</div>
-    	</div>
-    </section>
-
-   
-
-    <section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below are the sample Data Analytics projects on Complete Deployment .</p>
-          </div>
+        <div class="stat-item">
+          <div class="stat-num">54K+</div>
+          <div class="stat-label">Daily Inspections</div>
         </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="#" class="block-20 zoom-effect" style="background-image: url('images/proj_1.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="#">Jenkins on Server Push Based Approach CICD</a></h3>
-                <p> Implementing Nginx as a Reverse Proxy for the PetClinic Application! 🐾
-					I’m excited to share a significant milestone in my recent deployment of the PetClinic application: integrating Nginx as a reverse proxy! This addition has greatly enhanced the app's performance and security.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="#" class="block-20 zoom-effect" style="background-image: url('images/proj_2.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="#">Project Guide On Jenkins Integration with Sonar Server: A Complete Guide</a></h3>
-                <p>I'm thrilled to share that we've completed a significant milestone in our development pipeline! We've integrated SonarQube with Jenkins, automating our code quality checks and boosting our development efficiency.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="#" class="block-20 zoom-effect" style="background-image: url('images/proj_3.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="#">Building and Testing a Flask App with Docker: A Step-by-Step Guide </a></h3>
-                <p>Creating and testing a Flask application using Docker can streamline your development process, ensuring consistency across different environments. </p>
-              </div>
-            </div>
-          </div>
+        <div class="stat-item">
+          <div class="stat-num">2K+</div>
+          <div class="stat-label">Employee Check-ins/day</div>
         </div>
-	<br>
-		<!-- added justify-content-center to center align the last two projects -->
-		<!-- <div class="row d-flex justify-content-center">   -->
-			<!-- <div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main" class="block-20 zoom-effect" style="background-image: url('images/proj_4.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main">Sales Forecast- Time Series Forecasting</a></h3>
-				  <p>Used multiple machine learning models to forecast sales (retail store) and performed time series analysis.</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb">Customer Segmentation using clustering model</a></h3>
-				  <p>Developed a ML model to give various recommendations of financial products &amp; services on target customer groups.</p>
-				</div> -->
-			  </div>
-			</div>
-		 </div>
-	  </div>
-    </section>
+      </div>
+      <div class="hero-btns">
+        <a href="#experience" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
 
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-      <div class="container">
-		<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="20">0</strong>
-                <span>Achievements</span>
-              </div>
-            </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-card">
+          <div class="about-info-row">
+            <span class="info-label">Name</span>
+            <span class="info-val">Pemmadi Mukhesh Madhava Varma</span>
           </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="10">0</strong>
-                <span>Projects</span>
-              </div>
-            </div>
+          <div class="about-info-row">
+            <span class="info-label">Role</span>
+            <span class="info-val">Java Full Stack Developer</span>
           </div>
-          
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="200">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
+          <div class="about-info-row">
+            <span class="info-label">Experience</span>
+            <span class="info-val">3+ Years</span>
+          </div>
+          <div class="about-info-row">
+            <span class="info-label">Current Company</span>
+            <span class="info-val">4G Identity Solutions</span>
+          </div>
+          <div class="about-info-row">
+            <span class="info-label">Location</span>
+            <span class="info-val">Malikipuram, Andhra Pradesh</span>
+          </div>
+          <div class="about-info-row">
+            <span class="info-label">Domain</span>
+            <span class="info-val">Government & Enterprise Apps</span>
+          </div>
+          <div class="about-info-row">
+            <span class="info-label">Cloud</span>
+            <span class="info-val">AWS (EC2, S3, RDS, IAM, VPC)</span>
           </div>
         </div>
       </div>
-	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love to solve business problems &amp; uncover hidden Automation stories </h4>
-						<br>
-						<p><a href="https://github.com/devops0014" class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
-					</div>
-				</div>
-			<!-- </div> -->
-		</div>
-	</section>
+      <div class="about-text">
+        <p>I'm a <strong>Java Full Stack Developer</strong> with over 3 years of experience crafting scalable, secure, and production-ready applications. My journey spans government-scale platforms, enterprise e-commerce solutions, and cloud-native architecture.</p>
+        <p>Currently at <strong>4G Identity Solutions</strong>, I'm building NIC-approved digital infrastructure for the Government of Bihar — real-world systems that impact millions of citizens across the state.</p>
+        <p>My strength lies in combining <strong>strong backend architecture</strong> (Spring Boot, Microservices, JWT Security) with clean <strong>frontend experiences</strong> (React, Redux, Tailwind CSS) and reliable <strong>cloud deployment</strong> (AWS, Docker, Kubernetes, CI/CD).</p>
+        <p>I believe technology should solve real problems at scale — and every line of code I write is with that purpose in mind.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Technical Skills</div>
+    <h2 class="section-title">What I Work With</h2>
+    <p class="section-sub">A complete full-stack toolkit from backend architecture to cloud deployment.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">⚙️</div>
+        <div class="skill-card-title">Backend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Spring Framework</span><span class="skill-tag">Spring Security</span><span class="skill-tag">Microservices</span><span class="skill-tag">REST APIs</span><span class="skill-tag">Hibernate</span><span class="skill-tag">JPA</span><span class="skill-tag">JDBC</span><span class="skill-tag">JSF</span><span class="skill-tag">PrimeFaces</span><span class="skill-tag">JSP</span><span class="skill-tag">Servlets</span><span class="skill-tag">Spring AI</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🎨</div>
+        <div class="skill-card-title">Frontend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React.js</span><span class="skill-tag">Redux</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🗄️</div>
+        <div class="skill-card-title">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">Liquibase</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">☁️</div>
+        <div class="skill-card-title">Cloud & DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS EC2</span><span class="skill-tag">S3</span><span class="skill-tag">RDS</span><span class="skill-tag">IAM</span><span class="skill-tag">VPC</span><span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Jenkins</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">Terraform</span><span class="skill-tag">Trivy</span><span class="skill-tag">SonarQube</span><span class="skill-tag">Nexus</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🔧</div>
+        <div class="skill-card-title">Tools & APIs</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span><span class="skill-tag">Postman</span><span class="skill-tag">Swagger</span><span class="skill-tag">Stripe API</span><span class="skill-tag">Gemini AI API</span><span class="skill-tag">Zipkin</span><span class="skill-tag">Spring Actuator</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🏗️</div>
+        <div class="skill-card-title">Architecture</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microservices</span><span class="skill-tag">RBAC</span><span class="skill-tag">API Gateway</span><span class="skill-tag">Config Server</span><span class="skill-tag">Resilience4j</span><span class="skill-tag">Distributed Tracing</span><span class="skill-tag">JWT / OAuth2</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
 
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-      	<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
+      <!-- 4GI -->
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div class="timeline-role">Full Stack Developer</div>
+          <div class="timeline-company">4G Identity Solutions</div>
+          <span class="timeline-period">May 2025 – Present</span>
+        </div>
+        <div class="timeline-card">
+          <div class="project-label">PDS Parakh – Real-Time FPS Inspection System <span class="badge-nic">NIC Approved</span><span class="badge-gov">Govt. of Bihar</span></div>
+          <div class="project-stack">Spring Boot · Spring Security (JWT) · JPA/Hibernate · PostgreSQL · React.js · RBAC · AWS | Sep 2025 – Present</div>
+          <ul>
+            <li>NIC-approved platform inspecting <strong style="color:var(--white)">54,000+ Fair Price Shops daily</strong> across Bihar for the Food & Consumer Protection Department.</li>
+            <li>Integrated NIC data feeds for live FPS details, beneficiary ration cards, stock records, and distribution history.</li>
+            <li>Built full inspection workflow: grain quality, stock registers, e-PoS verification, grievance checks, IEC display, and infrastructure evaluation.</li>
+            <li>Enforced geo-coordinate validation ensuring officers are physically present at FPS location before submission.</li>
+            <li>Developed ration card generation module and oil ration card ID management for end-to-end beneficiary enrollment.</li>
+            <li>RBAC with JWT for Block Supply Officers, District Officers, and Admin roles.</li>
+          </ul>
+          <div class="project-label">HRMS – HR & Payroll Automation Platform <span class="badge-gov">Bihar Govt.</span></div>
+          <div class="project-stack">Spring Boot · Spring Security · PostgreSQL · React.js · AWS · GitHub Actions CI/CD | May 2025 – Dec 2026</div>
+          <ul>
+            <li>Selfie-based attendance system handling <strong style="color:var(--white)">2,000+ employee check-ins daily</strong> with real-time geo-coordinate validation.</li>
+            <li>Fully automated payroll engine with attendance-linked salary computation and monthly processing.</li>
+            <li>Leave management with RBAC-based role hierarchy approval workflows and document verification.</li>
+            <li>Deployed on AWS cloud with CI/CD pipelines via GitHub Actions.</li>
+          </ul>
+          <div class="project-label">CMR Godowns – Grain Stock Inspection System</div>
+          <div class="project-stack">Spring Boot · PostgreSQL · React.js · Tomcat | Bihar Ministry HQ Physical Server | 2 months</div>
+          <ul>
+            <li>Truck identification via truck number & lot number validation — verifying correct godown delivery and flagging diversions.</li>
+            <li>Geo-coordinate validation + mandatory operator selfie with geo-stamping at each stock drop point.</li>
+            <li>Deployed on Bihar Ministry HQ physical server using Apache Tomcat.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Shvintech -->
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div class="timeline-role">Backend Developer</div>
+          <div class="timeline-company">Shvintech</div>
+          <span class="timeline-period">Dec 2023 – Apr 2025</span>
+        </div>
+        <div class="timeline-card">
+          <div class="project-label">EcommerceHub – Production-Grade Full Stack E-commerce</div>
+          <div class="project-stack">Spring Boot · Spring Security (JWT) · JPA/Hibernate · PostgreSQL · React.js · Redux · Tailwind CSS · AWS · Docker · Kubernetes · CI/CD</div>
+          <ul>
+            <li>Built complete e-commerce platform with Admin, Seller, and Customer RBAC using JWT authentication.</li>
+            <li>REST APIs for Category, Product, Order management with pagination, sorting, and global exception handling.</li>
+            <li>React frontend with Redux, Tailwind CSS, and Stripe payment gateway integration.</li>
+            <li>AWS deployment with Jenkins + GitHub Actions CI/CD, Docker, Kubernetes, SonarQube, and Nexus.</li>
+            <li>Spring AI integration for intelligent features; full Swagger/OpenAPI documentation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CVCorp -->
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div class="timeline-role">Java Full Stack Intern</div>
+          <div class="timeline-company">CVCorp</div>
+          <span class="timeline-period">Oct 2022 – Jun 2023</span>
+        </div>
+        <div class="timeline-card">
+          <ul>
+            <li>Hands-on experience in backend development, REST API design, database management, and frontend integration.</li>
+            <li>Improved software best practices: code reviews, Git version control, and Swagger API documentation.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Featured Work</div>
+    <h2 class="section-title">Key Projects</h2>
+    <p class="section-sub">Government-scale and enterprise applications built from scratch.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-card-num">01</div>
+        <div class="project-card-title">PDS Parakh — FPS Inspection System</div>
+        <div class="project-card-stack">Spring Boot · React · AWS · PostgreSQL · NIC Approved</div>
+        <div class="project-card-desc">Real-time government inspection platform for 54,000+ Fair Price Shops daily across Bihar. Integrates NIC data, geo-validation, RBAC, ration card management, and beneficiary feedback capture.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-num">02</div>
+        <div class="project-card-title">HRMS — HR & Payroll Automation</div>
+        <div class="project-card-stack">Spring Boot · React · AWS · GitHub Actions · RBAC</div>
+        <div class="project-card-desc">Bihar Government HRMS with selfie-based attendance (2,000+ daily check-ins), geo-validation, automated payroll, leave approvals, and document verification.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-num">03</div>
+        <div class="project-card-title">EcommerceHub — Full Stack E-commerce</div>
+        <div class="project-card-stack">Spring Boot · React · Redux · AWS · Docker · Kubernetes</div>
+        <div class="project-card-desc">Production-grade e-commerce with JWT security, RBAC for Admin/Seller/Customer, Stripe payments, and full AWS CI/CD pipeline with Docker, Kubernetes, SonarQube, and Nexus.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-num">04</div>
+        <div class="project-card-title">CMR Godowns — Grain Inspection</div>
+        <div class="project-card-stack">Spring Boot · PostgreSQL · React · Tomcat · Bihar Ministry</div>
+        <div class="project-card-desc">Grain stock inspection system at Bihar Ministry HQ tracking truck numbers, lot validation, geo-stamp operator selfies, and generating detailed regulatory inspection reports.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-num">05</div>
+        <div class="project-card-title">Microservices — Employee & Address Service</div>
+        <div class="project-card-stack">Spring Cloud · Resilience4j · Feign Client · Zipkin · API Gateway</div>
+        <div class="project-card-desc">Microservices-based system with circuit breaker, Feign Client inter-service communication, Spring Cloud Config Server, API Gateway, and distributed tracing with Zipkin.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-num">06</div>
+        <div class="project-card-title">Smart Email Assistant</div>
+        <div class="project-card-stack">Spring Boot · Spring AI · Gemini API · Spring Security</div>
+        <div class="project-card-desc">AI-powered email assistant using Gemini API for context-aware email generation, smart suggestions, and automated classification with secure JWT authentication.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label">Academics</div>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2019 – 2022</div>
+        <div class="edu-degree">B.Tech – Mechanical Engineering</div>
+        <div class="edu-institute">Bonam Venkata Chalamaya Institute of Technology & Science, Amalapuram | JNTU Kakinada</div>
+        <span class="edu-grade">CGPA: 6.74</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2016 – 2019</div>
+        <div class="edu-degree">Diploma – Mechanical Engineering</div>
+        <div class="edu-institute">Swarnandhra College of Engineering & Technology, Narsapuram | SBTET AP</div>
+        <span class="edu-grade">66.77%</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2015 – 2016</div>
+        <div class="edu-degree">SSC</div>
+        <div class="edu-institute">ZPP High School, Chintalamori | Board of Secondary Education, AP</div>
+        <span class="edu-grade">CGPA: 8.7</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-val"><a href="tel:+917661851800">+91 7661851800</a></div>
           </div>
         </div>
-
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<h3 class="mb-4">Address</h3>
-	            <p>Hyderabad, India</p>
-	          </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:varmapemmadi777@gmail.com">varmapemmadi777@gmail.com</a></div>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
-          		</div>
-          		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://0101010101">+100010001000</a></p>
-	          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-val">Malikipuram, Andhra Pradesh – 533250</div>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="mailto:info@yoursite.com">alex8991@gmail.com</a></p>
-	          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <div>
+            <div class="contact-label">Current Role</div>
+            <div class="contact-val">Full Stack Developer @ 4G Identity Solutions</div>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
-          		</div>
-          		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="#">https://docs.google.com/document/d/1q3f7S8eWUFTgo0_gogG1EJQ2tSQd6_Uv/edit?usp=sharing&ouid=107148240267987197350&rtpof=true&sd=true</a></p>
-	          </div>
-          </div>
+        </div>
+      </div>
+      <div class="contact-note">
+        <h3>Let's Build Something Great</h3>
+        <p>I'm a Java Full Stack Developer with 3+ years of experience in government-scale and enterprise applications. Open to discussing new opportunities, collaborations, or interesting projects.</p>
+        <p>Whether you're looking for someone to architect a scalable backend, build a production-ready full-stack system, or deploy on AWS with full CI/CD — I'd love to connect.</p>
+        <a href="mailto:varmapemmadi777@gmail.com" class="btn-primary" style="display:inline-block">Send me an Email</a>
+      </div>
+    </div>
+  </section>
 
-		  <div class="container">
-			<br>
-			<br>
-			<div class="row justify-content-center">
-				<div class="col-md-7 ftco-animate text-center">
-					<h2>Have a<span> Question?  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSegcCfpVkPky4kYkjSap3oINnM9yII7P_vLPaqLzaojJekHbQ/viewform?usp=header" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-				</div>
-			</div>
-				<br>
-					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-					  <li class="ftco-animate normal-txt">Find me on  </li>
-					  <!-- <li class="ftco-animate"><a href="https://www.youtube.com/@RishabhMishraOfficial"><span class="icon-youtube"></span></a></li> -->
-					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/musta-shaik/"><span class="icon-linkedin"></span></a></li>  
-					  <!-- <li class="ftco-animate"><a href="https://twitter.com/rishabhnmishra"><span class="icon-twitter"></span></a></li> -->
-					  <!-- <li class="ftco-animate"><a href="https://twitter.com/rishabhnmishra"><span class="icon-facebook"></span></a></li> -->
-				      <li class="ftco-animate"><a href="https://www.instagram.com/hustling_guy77/"><span class="icon-instagram"></span></a></li>
-					</ul>
-				<br>
-		   </div>
-   </div>
- </section>
+  <!-- FOOTER -->
+  <footer>
+    <p>Built with ❤️ by <span>Pemmadi Mukhesh Madhava Varma</span> · Java Full Stack Developer</p>
+  </footer>
 
+  <script>
+    // Typing animation
+    const roles = ['Java Full Stack Developer', 'Spring Boot Expert', 'React Developer', 'AWS Cloud Developer', 'Backend Architect'];
+    let roleIndex = 0, charIndex = 0, isDeleting = false;
+    const el = document.getElementById('typing-role');
 
- 
-	
-    <footer class="ftco-footer ftco-section">
-		<div class="container">
-		  <div class="row">
-			<div class="col-md-12 text-center">
-  
-			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-			</div>
-		  </div>
-		</div>
-	  </footer>
+    function type() {
+      const current = roles[roleIndex];
+      if (isDeleting) {
+        el.textContent = current.substring(0, charIndex--);
+      } else {
+        el.textContent = current.substring(0, charIndex++);
+      }
+      if (!isDeleting && charIndex === current.length + 1) {
+        setTimeout(() => { isDeleting = true; type(); }, 2000);
+        return;
+      }
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+      setTimeout(type, isDeleting ? 60 : 100);
+    }
+    type();
 
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  
-  <script src="js/main.js"></script>
-    
-  </body>
+    document.querySelectorAll('.skill-card, .project-card, .edu-card, .timeline-item, .about-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
 </html>
